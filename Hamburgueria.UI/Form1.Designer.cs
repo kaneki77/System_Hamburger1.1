@@ -34,6 +34,7 @@ namespace Hamburgueria.UI
             this.Text = "Menu Principal";
             this.btnCategoria = new System.Windows.Forms.Button();
             this.btnProdutoCardapio = new System.Windows.Forms.Button();
+            this.btnUsuario = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCategoria
@@ -56,8 +57,19 @@ namespace Hamburgueria.UI
             this.btnProdutoCardapio.UseVisualStyleBackColor = true;
             this.btnProdutoCardapio.Click += new System.EventHandler(this.btnProdutoCardapio_Click);
             // 
+            // btnUsuario
+            // 
+            this.btnUsuario.Location = new System.Drawing.Point(12, 84);
+            this.btnUsuario.Name = "btnUsuario";
+            this.btnUsuario.Size = new System.Drawing.Size(150, 30);
+            this.btnUsuario.TabIndex = 2;
+            this.btnUsuario.Text = "Gerenciar Usuários";
+            this.btnUsuario.UseVisualStyleBackColor = true;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
+            // 
             // Form1
             // 
+            this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.btnProdutoCardapio);
             this.Controls.Add(this.btnCategoria);
             this.Name = "Form1";
@@ -68,5 +80,6 @@ namespace Hamburgueria.UI
 
         private System.Windows.Forms.Button btnCategoria;
         private System.Windows.Forms.Button btnProdutoCardapio;
+        private System.Windows.Forms.Button btnUsuario;
     }
 }
