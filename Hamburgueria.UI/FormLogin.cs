@@ -40,7 +40,7 @@ namespace Hamburgueria.UI
                 }
 
                 // Definir usuário logado na sessão
-                SessaoUsuario.UsuarioLogado = usuario;
+                UsuarioLogado.Definir(usuario);
 
                 MessageBox.Show($"Bem-vindo, {usuario.Nome}!\nNível de acesso: {usuario.NivelAcesso}", 
                     "Login realizado com sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
