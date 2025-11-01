@@ -5,11 +5,11 @@ using System;
 
 namespace Hamburgueria.Data
 {
-    public class categoriaRepository : IcategoriaRepository
+    public class CategoriaRepository : ICategoriaRepository
     {
         private readonly DbConnection _dbConnection = new DbConnection();
 
-        public void Adicionar(categoria categoria)
+        public void Adicionar(Categoria categoria)
         {
             const string query = "INSERT INTO categoria (Nome, Descricao) VALUES (@Nome, @Descricao)";
 
@@ -25,7 +25,7 @@ namespace Hamburgueria.Data
             }
         }
 
-        public void Atualizar(categoria categoria)
+        public void Atualizar(Categoria categoria)
         {
             const string query = "UPDATE categoria SET Nome = @Nome, Descricao = @Descricao WHERE id = @ID";
 
@@ -57,7 +57,7 @@ namespace Hamburgueria.Data
             }
         }
 
-        public categoria GetById(int id)
+        public Categoria GetById(int id)
         {
             const string query = "SELECT id, Nome, Descricao FROM categoria WHERE id = @ID";
 
@@ -71,7 +71,7 @@ namespace Hamburgueria.Data
                     {
                         if (reader.Read())
                         {
-                            return new categoria
+                            return new Categoria
                             {
                                 Id = reader.GetInt32("id"),
                                 Nome = reader.GetString("Nome"),
@@ -84,9 +84,9 @@ namespace Hamburgueria.Data
             }
         }
 
-        public List<categoria> GetAll()
+        public List<Categoria> GetAll()
         {
-            var categorias = new List<categoria>();
+            var categorias = new List<Categoria>();
             const string query = "SELECT id, Nome, Descricao FROM categoria";
 
             using (var connection = _dbConnection.GetConnection())
@@ -98,7 +98,7 @@ namespace Hamburgueria.Data
                     {
                         while (reader.Read())
                         {
-                            categorias.Add(new categoria
+                            categorias.Add(new Categoria
                             {
                                 Id = reader.GetInt32("id"),
                                 Nome = reader.GetString("Nome"),
