@@ -134,8 +134,9 @@ namespace Hamburgueria.Domain
                 return null;
 
             // Verificar se a senha está correta
+            // TEMPORÁRIO: Aceita senha em texto simples ou hash
             var senhaHash = GerarHashSenha(senha);
-            if (usuario.SenhaHash != senhaHash)
+            if (usuario.SenhaHash != senhaHash && usuario.SenhaHash != senha)
                 return null;
 
             return usuario;
