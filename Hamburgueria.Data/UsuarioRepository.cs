@@ -35,7 +35,7 @@ namespace Hamburgueria.Data
         {
             const string query = @"UPDATE usuario 
                                    SET nome = @Nome, login = @Login, senha_hash = @SenhaHash, nivel_acesso = @NivelAcesso 
-                                   WHERE id = @Id";
+                                   WHERE id_usuario = @Id";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -54,7 +54,7 @@ namespace Hamburgueria.Data
 
         public void Remover(int id)
         {
-            const string query = "DELETE FROM usuario WHERE id = @Id";
+            const string query = "DELETE FROM usuario WHERE id_usuario = @Id";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -69,7 +69,7 @@ namespace Hamburgueria.Data
 
         public Usuario GetById(int id)
         {
-            const string query = "SELECT id, nome, login, senha_hash, nivel_acesso FROM usuario WHERE id = @Id";
+            const string query = "SELECT id_usuario, nome, login, senha_hash, nivel_acesso FROM usuario WHERE id_usuario = @Id";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -91,7 +91,7 @@ namespace Hamburgueria.Data
 
         public Usuario GetByLogin(string login)
         {
-            const string query = "SELECT id, nome, login, senha_hash, nivel_acesso FROM usuario WHERE login = @Login";
+            const string query = "SELECT id_usuario, nome, login, senha_hash, nivel_acesso FROM usuario WHERE login = @Login";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -114,7 +114,7 @@ namespace Hamburgueria.Data
         public List<Usuario> GetAll()
         {
             var usuarios = new List<Usuario>();
-            const string query = "SELECT id, nome, login, senha_hash, nivel_acesso FROM usuario";
+            const string query = "SELECT id_usuario, nome, login, senha_hash, nivel_acesso FROM usuario";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -153,7 +153,7 @@ namespace Hamburgueria.Data
         {
             return new Usuario
             {
-                Id = reader.GetInt32("id"),
+                Id = reader.GetInt32("id_usuario"),
                 Nome = reader.GetString("nome"),
                 Login = reader.GetString("login"),
                 SenhaHash = reader.GetString("senha_hash"),
