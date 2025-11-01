@@ -53,5 +53,7 @@ namespace Hamburgueria.UI
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnCategoria;
     }
 }
