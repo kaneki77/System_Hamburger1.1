@@ -5,6 +5,9 @@
 -- Selecionar o banco de dados
 USE hamburgueria;
 
+-- Desabilitar verificações de chave estrangeira temporariamente
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- Remover a tabela se já existir (para recriar do zero)
 DROP TABLE IF EXISTS usuario;
 
@@ -21,6 +24,9 @@ CREATE TABLE usuario (
     PRIMARY KEY (id),
     UNIQUE KEY unique_login (login)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Reabilitar verificações de chave estrangeira
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- Inserir usuário administrador padrão (senha: admin123)
 INSERT INTO usuario (nome, login, senha, nivelAcesso) 
