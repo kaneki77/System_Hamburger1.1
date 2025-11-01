@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Hamburgueria.Data;
+
 
 namespace Hamburgueria.Domain
 {
@@ -8,13 +8,8 @@ namespace Hamburgueria.Domain
     {
         private readonly IProdutoCardapioRepository _produtoCardapioRepository;
 
-        public ProdutoCardapioService()
-        {
-            // Nota: Em um projeto com injeção de dependência configurada,
-            // a instância do repositório seria injetada no construtor.
-            // Mantendo a instância direta para compatibilidade com a estrutura atual.
-            _produtoCardapioRepository = new ProdutoCardapioRepository();
-        }
+        public ProdutoCardapioService(IProdutoCardapioRepository produtoCardapioRepository)
+        {    }
 
         public void Adicionar(ProdutoCardapio produto)
         {

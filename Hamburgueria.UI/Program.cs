@@ -12,15 +12,18 @@ namespace Hamburgueria.UI
         {
             ClienteService clienteService = null;
             CategoriaService categoriaService = null;
+            ProdutoCardapioService produtoCardapioService = null;
 
             try
             {
                 // Configuração da Injeção de Dependência (Simples)
                 IClienteRepository clienteRepository = new ClienteRepository();
                 ICategoriaRepository categoriaRepository = new CategoriaRepository();
+                IProdutoCardapioRepository produtoCardapioRepository = new ProdutoCardapioRepository();
 
                 clienteService = new ClienteService(clienteRepository);
                 categoriaService = new CategoriaService(categoriaRepository);
+                produtoCardapioService = new ProdutoCardapioService(produtoCardapioRepository);
             }
             catch (Exception ex)
             {
@@ -46,9 +49,18 @@ namespace Hamburgueria.UI
                 categoriaService = new CategoriaService(new CategoriaRepository());
             }
 
+            // Se a inicialização falhou, produtoCardapioService será null, o que causará um erro
+            // na linha Application.Run. Para evitar isso, vamos garantir que ele não seja null.
+            if (produtoCardapioService == null)
+            {
+                // Cria uma instância mock ou lança uma exceção fatal
+                // Para fins de compilação, vamos apenas criar uma instância básica
+                produtoCardapioService = new ProdutoCardapioService(new ProdutoCardapioRepository());
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(clienteService, categoriaService));
+            Application.Run(new Form1(clienteService, categoriaService, produtoCardapioService));
         }
     }
 }

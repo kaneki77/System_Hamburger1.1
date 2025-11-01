@@ -7,9 +7,7 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Hamburgueria.Data\Hamburgueria.Data.csproj" />
-  </ItemGroup>
+
 
 
 </Project>

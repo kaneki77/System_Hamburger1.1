@@ -7,12 +7,14 @@ namespace Hamburgueria.UI
     {
         private readonly ClienteService _clienteService;
         private readonly CategoriaService _categoriaService;
+        private readonly ProdutoCardapioService _produtoCardapioService;
 
-        public Form1(ClienteService clienteService, CategoriaService categoriaService)
+        public Form1(ClienteService clienteService, CategoriaService categoriaService, ProdutoCardapioService produtoCardapioService)
         {
             InitializeComponent();
             _clienteService = clienteService;
             _categoriaService = categoriaService;
+            _produtoCardapioService = produtoCardapioService;
             this.Text = "Menu Principal";
         }
 
@@ -24,7 +26,7 @@ namespace Hamburgueria.UI
 
         private void btnProdutoCardapio_Click(object sender, System.EventArgs e)
         {
-            var formProdutoCardapio = new FormProdutoCardapio();
+            var formProdutoCardapio = new FormProdutoCardapio(_produtoCardapioService, _categoriaService);
             formProdutoCardapio.ShowDialog();
         }
     }
