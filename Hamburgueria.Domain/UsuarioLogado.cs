@@ -29,7 +29,7 @@ namespace Hamburgueria.Domain
             Id = usuario.Id;
             Nome = usuario.Nome;
             Login = usuario.Login;
-            NivelAcesso = usuario.NivelAcesso;
+            NivelAcesso = usuario.NivelAcesso.ToString();
         }
 
         /// <summary>
