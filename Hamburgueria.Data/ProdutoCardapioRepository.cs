@@ -11,7 +11,7 @@ namespace Hamburgueria.Data
 
         public void Adicionar(ProdutoCardapio produto)
         {
-            const string query = "INSERT INTO produto (nome, descricao, preco_venda, ativo, id_categoria) VALUES (@nome, @descricao, @preco_venda, @ativo, @id_categoria)";
+            const string query = "INSERT INTO produto (nome, descricao, preco_venda, ativo, idCategoria) VALUES (@nome, @descricao, @preco_venda, @ativo, @idCategoria)";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -22,7 +22,7 @@ namespace Hamburgueria.Data
                     command.Parameters.AddWithValue("@descricao", produto.Descricao ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@preco_venda", produto.PrecoVenda);
                     command.Parameters.AddWithValue("@ativo", produto.Ativo);
-                    command.Parameters.AddWithValue("@id_categoria", produto.IdCategoria);
+                    command.Parameters.AddWithValue("@idCategoria", produto.IdCategoria);
                     command.ExecuteNonQuery();
                 }
             }
@@ -30,7 +30,7 @@ namespace Hamburgueria.Data
 
         public void Atualizar(ProdutoCardapio produto)
         {
-            const string query = "UPDATE produto SET nome = @nome, descricao = @descricao, preco_venda = @preco_venda, ativo = @ativo, id_categoria = @id_categoria WHERE id_produto = @id";
+            const string query = "UPDATE produto SET nome = @nome, descricao = @descricao, preco_venda = @preco_venda, ativo = @ativo, idCategoria = @idCategoria WHERE id = @id";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -41,7 +41,7 @@ namespace Hamburgueria.Data
                     command.Parameters.AddWithValue("@descricao", produto.Descricao ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@preco_venda", produto.PrecoVenda);
                     command.Parameters.AddWithValue("@ativo", produto.Ativo);
-                    command.Parameters.AddWithValue("@id_categoria", produto.IdCategoria);
+                    command.Parameters.AddWithValue("@idCategoria", produto.IdCategoria);
                     command.Parameters.AddWithValue("@id", produto.Id);
                     command.ExecuteNonQuery();
                 }
@@ -50,7 +50,7 @@ namespace Hamburgueria.Data
 
         public void Remover(int id)
         {
-            const string query = "DELETE FROM produto WHERE id_produto = @id";
+            const string query = "DELETE FROM produto WHERE id = @id";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -65,7 +65,7 @@ namespace Hamburgueria.Data
 
         public ProdutoCardapio GetById(int id)
         {
-            const string query = "SELECT id_produto, nome, descricao, preco_venda, ativo, id_categoria FROM produto WHERE id_produto = @id";
+            const string query = "SELECT id, nome, descricao, preco_venda, ativo, idCategoria FROM produto WHERE id = @id";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -79,12 +79,12 @@ namespace Hamburgueria.Data
                         {
                             return new ProdutoCardapio
                             {
-                                Id = reader.GetInt32("id_produto"),
+                                Id = reader.GetInt32("id"),
                                 Nome = reader.GetString("nome"),
                                 Descricao = reader.IsDBNull(reader.GetOrdinal("descricao")) ? null : reader.GetString("descricao"),
                                 PrecoVenda = reader.GetDecimal("preco_venda"),
                                 Ativo = reader.GetBoolean("ativo"),
-                                IdCategoria = reader.GetInt32("id_categoria")
+                                IdCategoria = reader.GetInt32("idCategoria")
                             };
                         }
                         return null;
@@ -95,7 +95,7 @@ namespace Hamburgueria.Data
 
         public List<ProdutoCardapio> GetAll()
         {
-            const string query = "SELECT id_produto, nome, descricao, preco_venda, ativo, id_categoria FROM produto";
+            const string query = "SELECT id, nome, descricao, preco_venda, ativo, idCategoria FROM produto";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -109,12 +109,12 @@ namespace Hamburgueria.Data
                         {
                             produtos.Add(new ProdutoCardapio
                             {
-                                Id = reader.GetInt32("id_produto"),
+                                Id = reader.GetInt32("id"),
                                 Nome = reader.GetString("nome"),
                                 Descricao = reader.IsDBNull(reader.GetOrdinal("descricao")) ? null : reader.GetString("descricao"),
                                 PrecoVenda = reader.GetDecimal("preco_venda"),
                                 Ativo = reader.GetBoolean("ativo"),
-                                IdCategoria = reader.GetInt32("id_categoria")
+                                IdCategoria = reader.GetInt32("idCategoria")
                             });
                         }
                         return produtos;
