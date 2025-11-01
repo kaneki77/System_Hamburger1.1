@@ -5,13 +5,13 @@ using System;
 
 namespace Hamburgueria.Data
 {
-    public class CategoriaRepository : ICategoriaRepository
+    public class categoriaRepository : IcategoriaRepository
     {
         private readonly DbConnection _dbConnection = new DbConnection();
 
-        public void Adicionar(Categoria categoria)
+        public void Adicionar(categoria categoria)
         {
-            const string query = "INSERT INTO Categoria (Nome, Descricao) VALUES (@Nome, @Descricao)";
+            const string query = "INSERT INTO categoria (Nome, Descricao) VALUES (@Nome, @Descricao)";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -25,9 +25,9 @@ namespace Hamburgueria.Data
             }
         }
 
-        public void Atualizar(Categoria categoria)
+        public void Atualizar(categoria categoria)
         {
-            const string query = "UPDATE Categoria SET Nome = @Nome, Descricao = @Descricao WHERE ID_Categoria = @ID";
+            const string query = "UPDATE categoria SET Nome = @Nome, Descricao = @Descricao WHERE id = @ID";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -44,7 +44,7 @@ namespace Hamburgueria.Data
 
         public void Remover(int id)
         {
-            const string query = "DELETE FROM Categoria WHERE ID_Categoria = @ID";
+            const string query = "DELETE FROM categoria WHERE id = @ID";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -57,9 +57,9 @@ namespace Hamburgueria.Data
             }
         }
 
-        public Categoria GetById(int id)
+        public categoria GetById(int id)
         {
-            const string query = "SELECT ID_Categoria, Nome, Descricao FROM Categoria WHERE ID_Categoria = @ID";
+            const string query = "SELECT id, Nome, Descricao FROM categoria WHERE id = @ID";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -71,9 +71,9 @@ namespace Hamburgueria.Data
                     {
                         if (reader.Read())
                         {
-                            return new Categoria
+                            return new categoria
                             {
-                                Id = reader.GetInt32("ID_Categoria"),
+                                Id = reader.GetInt32("id"),
                                 Nome = reader.GetString("Nome"),
                                 Descricao = reader.IsDBNull(reader.GetOrdinal("Descricao")) ? null : reader.GetString("Descricao")
                             };
@@ -84,10 +84,10 @@ namespace Hamburgueria.Data
             }
         }
 
-        public List<Categoria> GetAll()
+        public List<categoria> GetAll()
         {
-            var categorias = new List<Categoria>();
-            const string query = "SELECT ID_Categoria, Nome, Descricao FROM Categoria";
+            var categorias = new List<categoria>();
+            const string query = "SELECT id, Nome, Descricao FROM categoria";
 
             using (var connection = _dbConnection.GetConnection())
             {
@@ -98,9 +98,9 @@ namespace Hamburgueria.Data
                     {
                         while (reader.Read())
                         {
-                            categorias.Add(new Categoria
+                            categorias.Add(new categoria
                             {
-                                Id = reader.GetInt32("ID_Categoria"),
+                                Id = reader.GetInt32("id"),
                                 Nome = reader.GetString("Nome"),
                                 Descricao = reader.IsDBNull(reader.GetOrdinal("Descricao")) ? null : reader.GetString("Descricao")
                             });
