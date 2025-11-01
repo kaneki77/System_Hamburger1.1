@@ -21,5 +21,11 @@ namespace Hamburgueria.UI
             var formCategoria = new FormCategoria(_categoriaService);
             formCategoria.ShowDialog();
         }
+
+        private void btnProdutoCardapio_Click(object sender, System.EventArgs e)
+        {
+            var formProdutoCardapio = new FormProdutoCardapio();
+            formProdutoCardapio.ShowDialog();
+        }
     }
 }
