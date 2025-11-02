@@ -67,3 +67,42 @@ O projeto está com o desenvolvimento das entregas D0, D15 e D30 **concluído** 
 
 O próximo passo seria a implementação da interface gráfica (WinForms) para utilizar os serviços e repositórios criados, permitindo a interação visual com o sistema.
 
+
+
+## Módulo de Usuários (D45) - Concluído
+
+O módulo de usuários foi implementado com sucesso, adicionando autenticação e controle de acesso baseado em função (RBAC) ao sistema.
+
+### Funcionalidades Implementadas
+
+- **Sistema de Autenticação:**
+  - Tela de login antes do menu principal.
+  - Validação de credenciais (login e senha).
+  - Armazenamento da sessão do usuário logado.
+  - Exibição do nome e nível de acesso no título do menu principal.
+
+- **Controle de Acesso Baseado em Função (RBAC):**
+  - Dois níveis de acesso: **Gerente** e **Atendente**.
+  - Apenas Gerentes podem acessar o gerenciamento de usuários.
+  - Mensagem de acesso negado para Atendentes.
+
+- **CRUD de Usuários:**
+  - Adicionar, atualizar e remover usuários.
+  - Listar todos os usuários.
+  - Validação para não permitir remover o próprio usuário logado.
+
+### Arquivos Criados/Modificados
+
+- **Domain:** `Usuario.cs`, `UsuarioLogado.cs`, `IUsuarioRepository.cs`, `UsuarioService.cs`
+- **Data:** `UsuarioRepository.cs`
+- **UI:** `FormLogin.cs`, `FormUsuario.cs`, `Form1.cs` (atualizado), `Program.cs` (atualizado)
+- **Banco de Dados:** `ddl_usuario.sql` (script de criação da tabela)
+
+### Como Testar
+
+1. **Execute o script SQL** `insert_usuarios_teste.sql` para inserir os usuários de teste.
+2. **Compile e execute** a aplicação no Visual Studio.
+3. **Faça login** com as credenciais de teste:
+   - **Gerente:** `admin` / `admin123`
+   - **Atendente:** `atendente` / `atendente123`
+4. **Teste o controle de acesso** e o CRUD de usuários.
